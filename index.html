@@ -53,13 +53,27 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             opacity: 0.02; pointer-events: none;
         }
+
+        /* ヘッダーの初期状態とスクロール時の背景 */
+        #header {
+            background-color: transparent;
+            transition: all 0.5s ease;
+        }
+        #header.scrolled {
+            background-color: rgba(8, 9, 13, 0.95); /* 深い紺色の背景 */
+            backdrop-filter: blur(10px); /* すりガラス効果 */
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1); /* 薄い金の境界線 */
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
     <div class="fixed inset-0 noise-overlay z-[100]"></div>
 
-    <header class="fixed top-0 w-full z-50 py-6 px-6 md:px-12 transition-all duration-500" id="header">
+    <header class="fixed top-0 w-full z-50 py-6 px-6 md:px-12" id="header">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center gap-2.5 md:gap-3">
                 <img src="icon.png" alt="Logo" class="w-6 h-6 md:w-7 md:h-7 object-contain">
@@ -128,6 +142,16 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true, duration: 1200, easing: 'ease-out-expo' });
+
+        // スクロール時にヘッダーに背景をつける処理
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
