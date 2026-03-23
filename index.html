@@ -31,7 +31,7 @@
     </script>
 
     <style>
-        body { background-color: #08090d; color: #fdfcf0; letter-spacing: 0.1em; }
+        body { background-color: #08090d; color: #fdfcf0; letter-spacing: 0.12em; }
         .text-gradient {
             background: linear-gradient(135deg, #d4af37 0%, #ffffff 50%, #aa8a2e 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -62,12 +62,10 @@
     <header class="fixed top-0 w-full z-50 py-6 px-6 md:px-12 transition-all duration-500" id="header">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <a href="#" class="flex items-center gap-2.5 md:gap-3">
-                <img src="icon.png" alt="KOYOI" class="w-6 h-6 md:w-7 md:h-7 object-contain">
-                <span class="text-sm md:text-base font-black tracking-widest uppercase">こよいぷろだくしょん</span>
+                <img src="icon.png" alt="Logo" class="w-6 h-6 md:w-7 md:h-7 object-contain">
+                <span class="text-sm md:text-base font-black tracking-widest uppercase text-white">こよいぷろだくしょん</span>
             </a>
-
             <nav class="flex items-center gap-6 md:gap-10">
-                <a href="#vision" class="hidden md:block text-[9px] font-bold tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-opacity">Vision</a>
                 <a href="#talents" class="hidden md:block text-[9px] font-bold tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-opacity">Talents</a>
                 <a href="https://glowengine-llc.com/" target="_blank" class="text-[9px] font-black tracking-[0.2em] uppercase px-4 py-1.5 border border-koyoi-gold/30 rounded-full hover:bg-koyoi-gold hover:text-koyoi-night transition-all">GlowEngine</a>
             </nav>
@@ -83,7 +81,7 @@
                     Premium ASMR Agency
                 </p>
                 
-                <h1 data-aos="fade-up" data-aos-delay="200" class="text-4xl md:text-[80px] font-black leading-tight mb-10 tracking-tighter text-gradient">
+                <h1 data-aos="fade-up" data-aos-delay="200" class="text-4xl md:text-[80px] font-black leading-tight mb-10 tracking-tighter text-gradient uppercase">
                     Beyond the Silence.
                 </h1>
 
@@ -101,13 +99,11 @@
             </div>
         </section>
 
-        <section id="talents" class="py-32 px-6 md:px-12">
+        <section id="talents" class="py-48 px-6 md:px-12 bg-white/[0.01]">
             <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-                    <div>
-                        <h2 data-aos="fade-right" class="text-2xl font-black tracking-tighter uppercase mb-2">Talents</h2>
-                        <div class="w-8 h-1 bg-koyoi-gold"></div>
-                    </div>
+                <div class="mb-20 text-center md:text-left">
+                    <h2 data-aos="fade-right" class="text-2xl font-black tracking-tighter uppercase mb-2">Talents</h2>
+                    <div class="w-8 h-1 bg-koyoi-gold mx-auto md:mx-0"></div>
                 </div>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
@@ -118,23 +114,13 @@
                 </div>
             </div>
         </section>
-
-        <section id="vision" class="py-40 px-6 bg-white/[0.01]">
-            <div class="max-w-2xl mx-auto text-center">
-                <h2 data-aos="fade-up" class="text-lg md:text-2xl font-black mb-12 tracking-widest text-koyoi-gold">音と個が、夜を溶かす。</h2>
-                <div data-aos="fade-up" class="space-y-8 opacity-40 text-xs md:text-sm leading-[2.5] font-medium">
-                    <p>ASMRは、単なる音の記録ではありません。<br>表現者の息遣いと、視聴者の波長が重なり合う繊細な芸術です。</p>
-                    <p>「こよいぷろだくしょん」は、独自の美学を持つ才能を見出し、<br>新しいリラクゼーションの形を提示します。</p>
-                </div>
-            </div>
-        </section>
     </main>
 
-    <footer class="py-16 px-6 border-t border-white/5 text-center">
-        <div class="mb-8 flex justify-center gap-8 text-[9px] font-black tracking-[0.3em] opacity-30 uppercase">
+    <footer class="py-20 px-6 border-t border-white/5 text-center">
+        <div class="mb-10 flex justify-center gap-10 text-[9px] font-black tracking-[0.3em] opacity-30 uppercase">
             <a href="https://x.com/" target="_blank" class="hover:text-koyoi-gold transition-colors">X (Twitter)</a>
             <a href="https://glowengine-llc.com/" target="_blank" class="hover:text-koyoi-gold transition-colors">Corporate</a>
-            <a href="mailto:info@example.com" class="hover:text-koyoi-gold transition-colors">Contact</a>
+            <a href="mailto:info@glowengine-llc.com" class="hover:text-koyoi-gold transition-colors">Contact</a>
         </div>
         <p class="text-[8px] font-bold tracking-[0.5em] opacity-10 uppercase">&copy; 2026 KOYOI PRODUCTION / GLOWENGINE</p>
     </footer>
