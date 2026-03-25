@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Noto+Sans+JP:wght@300;500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -31,10 +31,20 @@
     <style>
         body { background-color: #08090d; color: #fdfcf0; letter-spacing: 0.15em; }
         
-        /* 会社名・ロゴのタイポグラフィ調整 */
-        .font-logo { font-weight: 900; letter-spacing: 0.5em; }
-        .font-corporate { font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; }
+        header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(8, 9, 13, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
+        }
         
+        header.scrolled {
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            background-color: rgba(8, 9, 13, 0.9);
+        }
+
+        .font-logo { font-weight: 900; letter-spacing: 0.4em; }
         .text-gradient {
             background: linear-gradient(135deg, #d4af37 0%, #ffffff 50%, #aa8a2e 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -42,66 +52,83 @@
 
         .talent-card-secret {
             background: linear-gradient(145deg, #111827 0%, #08090d 100%);
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             position: relative; overflow: hidden;
         }
         .talent-card-secret::before {
             content: "COMING SOON"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 0.6rem; letter-spacing: 0.8em; color: rgba(212, 175, 55, 0.15);
+            font-weight: 900; font-size: 0.55rem; letter-spacing: 0.8em; color: rgba(212, 175, 55, 0.1);
         }
 
         .contact-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(255, 255, 255, 0.01);
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.4s ease;
         }
-        .contact-card:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.05); }
+        .contact-card:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.03); }
 
-        .line-accent { height: 1px; background: linear-gradient(90deg, #d4af37 0%, transparent 100%); width: 100px; }
+        .email-text {
+            white-space: nowrap;
+            word-break: keep-all;
+        }
+
+        .noise-overlay {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.015; pointer-events: none;
+        }
     </style>
 </head>
-<body class="antialiased overflow-x-hidden">
+<body class="antialiased overflow-x-hidden font-sans text-[#fdfcf0]">
 
-    <header class="fixed top-0 w-full z-50 py-8 px-6 md:px-12" id="header">
-        <div class="max-w-7xl mx-auto flex justify-between items-end">
-            <a href="#" class="flex flex-col gap-1">
-                <span class="text-xs md:text-sm font-logo text-white">今宵プロダクション</span>
-                <div class="flex items-center gap-2 opacity-40">
-                    <div class="w-4 h-[1px] bg-white"></div>
-                    <span class="text-[8px] font-corporate tracking-[0.3em]">Operated by GLOWENGINE LLC.</span>
+    <div class="fixed inset-0 noise-overlay z-[100]"></div>
+
+    <header class="fixed top-0 w-full z-50 py-6 px-6 md:px-12" id="header">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex flex-col">
+                <div class="flex items-center gap-3">
+                    <img src="icon.png" alt="Logo" class="w-5 h-5 object-contain">
+                    <h1 class="text-sm md:text-base font-logo uppercase text-white leading-none tracking-[0.4em]">今宵プロダクション</h1>
                 </div>
-            </a>
-            <nav class="flex items-center gap-8">
-                <a href="#talents" class="hidden md:block text-[9px] font-black tracking-[0.4em] uppercase opacity-40 hover:opacity-100 transition-opacity">Talents</a>
-                <a href="https://glowengine-llc.com/" target="_blank" class="text-[9px] font-black tracking-[0.2em] uppercase px-5 py-2 border border-koyoi-gold/40 rounded-sm hover:bg-koyoi-gold hover:text-koyoi-night transition-all">Corporate Site</a>
+                <div class="flex items-center gap-2 opacity-30 mt-1 pl-8">
+                    <div class="w-3 h-[1px] bg-white"></div>
+                    <span class="text-[7px] md:text-[8px] font-medium tracking-[0.2em] uppercase leading-none">Operated by GLOWENGINE LLC.</span>
+                </div>
+            </div>
+            
+            <nav class="flex items-center gap-6 md:gap-10">
+                <a href="#talents" class="hidden md:block text-[9px] font-bold tracking-[0.4em] uppercase opacity-40 hover:opacity-100 transition-opacity">Talents</a>
+                <a href="https://glowengine-llc.com/" target="_blank" class="text-[9px] font-black tracking-[0.2em] uppercase px-5 py-2.5 border border-koyoi-gold/40 rounded-sm hover:bg-koyoi-gold hover:text-koyoi-night transition-all">
+                    Corporate Site
+                </a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="min-h-screen flex flex-col justify-center px-6 md:px-24">
+        <section class="h-[95vh] flex flex-col justify-center px-6 md:px-24">
             <div data-aos="fade-up">
-                <p class="text-[10px] font-black tracking-[1em] text-koyoi-gold mb-6 uppercase">Premium ASMR Agency</p>
-                <h1 class="text-5xl md:text-[100px] font-black leading-none mb-8 tracking-tighter text-gradient uppercase italic">
+                <p class="text-[9px] font-black tracking-[1em] text-koyoi-gold mb-6 uppercase opacity-80">Premium ASMR Agency</p>
+                <h2 class="text-5xl md:text-[110px] font-black leading-none mb-10 tracking-tighter text-gradient uppercase italic">
                     Beyond the<br>Silence.
-                </h1>
-                <div class="flex flex-col gap-4 max-w-lg">
-                    <div class="line-accent"></div>
-                    <p class="text-[11px] md:text-xs leading-[2.5] opacity-50 font-medium">
-                        NEXT GENERATION ASMR PRODUCTION.<br>
-                        OPERATED BY <a href="#" class="underline underline-offset-4 hover:text-koyoi-gold transition-colors">GLOWENGINE LLC.</a>
+                </h2>
+                <div class="flex flex-col gap-6 max-w-lg border-l border-koyoi-gold/30 pl-6">
+                    <p class="text-[11px] md:text-xs leading-[2.6] opacity-40 font-medium tracking-widest">
+                        静寂のその先へ。<br>
+                        「今宵プロダクションは次世代のASMR体験を創出するクリエイティブ・プロダクションです。
                     </p>
                 </div>
             </div>
         </section>
 
-        <section id="talents" class="py-40 px-6 md:px-12">
+        <section id="talents" class="py-48 px-6 md:px-12">
             <div class="max-w-7xl mx-auto">
-                <div class="mb-20">
-                    <h2 data-aos="fade-right" class="text-xs font-logo tracking-[0.6em] text-koyoi-gold uppercase mb-4">Talents</h2>
-                    <div class="w-16 h-[1px] bg-koyoi-gold opacity-50"></div>
+                <div class="mb-24 flex items-end justify-between border-b border-white/5 pb-8">
+                    <div>
+                        <h3 class="text-xs font-logo tracking-[0.8em] text-koyoi-gold uppercase mb-2">Talents</h3>
+                        <p class="text-[9px] opacity-20 uppercase tracking-[0.3em]">Affiliated Streamers</p>
+                    </div>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-10">
                     <div data-aos="fade-up" class="talent-card-secret aspect-[3/4] rounded-sm"></div>
                     <div data-aos="fade-up" data-aos-delay="100" class="talent-card-secret aspect-[3/4] rounded-sm opacity-60"></div>
                     <div data-aos="fade-up" data-aos-delay="200" class="talent-card-secret aspect-[3/4] rounded-sm opacity-40"></div>
@@ -110,50 +137,59 @@
             </div>
         </section>
 
-        <section id="connect" class="py-40 px-6 border-t border-white/5 bg-white/[0.01]">
+        <section id="connect" class="py-48 px-6 bg-white/[0.01] border-t border-white/5">
             <div class="max-w-6xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-12">
-                    <a href="https://x.com/" target="_blank" data-aos="fade-right" class="contact-card p-12 flex flex-col items-start group">
-                        <span class="text-[10px] font-black tracking-[0.5em] text-koyoi-gold uppercase mb-12">Official X</span>
-                        <div class="text-4xl md:text-6xl font-black tracking-tighter mb-4 group-hover:text-koyoi-gold transition-colors">@koyoi_prod</div>
-                        <div class="flex items-center gap-3 opacity-30 group-hover:opacity-100 transition-opacity">
-                            <span class="text-[9px] tracking-[0.4em]">VISIT PROFILE</span>
-                            <div class="w-8 h-[1px] bg-white group-hover:bg-koyoi-gold"></div>
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    <a href="https://x.com/" target="_blank" data-aos="fade-right" class="contact-card p-12 md:p-16 flex flex-col items-start group">
+                        <span class="text-[9px] font-black tracking-[0.6em] text-koyoi-gold uppercase mb-16 opacity-70">Official X (Twitter)</span>
+                        <div class="text-4xl md:text-7xl font-black tracking-tighter mb-6 group-hover:text-koyoi-gold transition-colors text-white/90">@koyoi_prod</div>
+                        <div class="flex items-center gap-4 opacity-20 group-hover:opacity-100 transition-all group-hover:gap-6">
+                            <span class="text-[9px] tracking-[0.5em] font-bold italic">FOLLOW US</span>
+                            <div class="w-12 h-[1px] bg-white group-hover:bg-koyoi-gold"></div>
                         </div>
                     </a>
 
-                    <a href="mailto:info@glowengine-llc.com" data-aos="fade-left" class="contact-card p-12 flex flex-col items-start group">
-                        <span class="text-[10px] font-black tracking-[0.5em] text-koyoi-gold uppercase mb-12">Inquiries</span>
-                        <div class="text-xl md:text-2xl font-light tracking-widest mb-6 italic">info@glowengine-llc.com</div>
-                        <div class="text-[9px] opacity-30 tracking-[0.4em]">CONTACT FOR BUSINESS</div>
+                    <a href="mailto:info@glowengine-llc.com" data-aos="fade-left" class="contact-card p-12 md:p-16 flex flex-col items-start group">
+                        <span class="text-[9px] font-black tracking-[0.6em] text-koyoi-gold uppercase mb-16 opacity-70">Contact Inquiry</span>
+                        <div class="email-text text-xl md:text-3xl font-light tracking-widest mb-8 italic text-white/90 group-hover:text-white transition-colors">info@glowengine-llc.com</div>
+                        <p class="text-[10px] md:text-[11px] opacity-40 group-hover:opacity-70 tracking-[0.3em] font-bold transition-opacity">案件依頼はこちらに</p>
                     </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-20 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="flex flex-col items-center md:items-start gap-2">
-                <span class="text-[9px] font-black tracking-[0.3em] opacity-40 uppercase">今宵プロダクション</span>
-                <p class="text-[8px] font-medium tracking-[0.5em] opacity-20 uppercase">
+    <footer class="py-24 px-6 border-t border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="flex flex-col items-center md:items-start gap-4 text-center md:text-left">
+                
+                <div class="flex items-center gap-3">
+                    <img src="icon.png" alt="Logo" class="w-5 h-5 object-contain">
+                    <span class="text-[10px] font-logo uppercase text-white tracking-[0.5em]">今宵プロダクション</span>
+                </div>
+                
+                <p class="text-[8px] font-medium tracking-[0.6em] opacity-20 uppercase">
                     &copy; 2026 GLOWENGINE LLC. ALL RIGHTS RESERVED.
                 </p>
             </div>
-            <div class="flex gap-8 opacity-40 text-[9px] font-bold tracking-[0.2em]">
-                <a href="#" class="hover:text-koyoi-gold transition-colors italic uppercase">X (Twitter)</a>
-                <a href="https://glowengine-llc.com/" target="_blank" class="hover:text-koyoi-gold transition-colors italic uppercase">Corporate</a>
+            <div class="flex gap-10 opacity-30 text-[9px] font-bold tracking-[0.4em]">
+                <a href="#" class="hover:text-koyoi-gold transition-colors uppercase">X (Twitter)</a>
+                <a href="https://glowengine-llc.com/" target="_blank" class="hover:text-koyoi-gold transition-colors uppercase">Corporate Site</a>
             </div>
         </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, duration: 1000 });
+        AOS.init({ once: true, duration: 1200, easing: 'ease-out-expo' });
+        
+        const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
-            const header = document.getElementById('header');
-            header.style.backgroundColor = window.scrollY > 50 ? "rgba(8, 9, 13, 0.95)" : "transparent";
-            header.style.backdropFilter = window.scrollY > 50 ? "blur(20px)" : "none";
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
         });
     </script>
 </body>
