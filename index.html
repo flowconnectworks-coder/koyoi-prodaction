@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>こよいぷろだくしょん | Beyond the Silence.</title>
+    <title>今宵プロダクション | Beyond the Silence.</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Noto+Sans+JP:wght@300;500;900&display=swap" rel="stylesheet">
     
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,14 +16,12 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['"Zen Maru Gothic"', 'sans-serif'] },
+                    fontFamily: { 
+                        sans: ['"Inter"', '"Noto Sans JP"', 'sans-serif'],
+                    },
                     colors: {
                         'koyoi-night': '#08090d',
                         'koyoi-gold': '#d4af37',
-                    },
-                    animation: { 'soft-float': 'float 8s ease-in-out infinite' },
-                    keyframes: {
-                        float: { '0%, 100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-15px)' } }
                     }
                 }
             }
@@ -31,126 +29,131 @@
     </script>
 
     <style>
-        body { background-color: #08090d; color: #fdfcf0; letter-spacing: 0.12em; }
+        body { background-color: #08090d; color: #fdfcf0; letter-spacing: 0.15em; }
+        
+        /* 会社名・ロゴのタイポグラフィ調整 */
+        .font-logo { font-weight: 900; letter-spacing: 0.5em; }
+        .font-corporate { font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; }
+        
         .text-gradient {
             background: linear-gradient(135deg, #d4af37 0%, #ffffff 50%, #aa8a2e 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
+
         .talent-card-secret {
             background: linear-gradient(145deg, #111827 0%, #08090d 100%);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-            position: relative; overflow: hidden; transition: all 0.5s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative; overflow: hidden;
         }
         .talent-card-secret::before {
             content: "COMING SOON"; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-            font-weight: 900; font-size: 0.65rem; letter-spacing: 0.5em; color: rgba(212, 175, 55, 0.15);
-        }
-        .btn-koyoi {
-            background: #d4af37; color: #08090d; transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-        .btn-koyoi:hover { background: #fdfcf0; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3); }
-        .noise-overlay {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            opacity: 0.02; pointer-events: none;
+            font-weight: 900; font-size: 0.6rem; letter-spacing: 0.8em; color: rgba(212, 175, 55, 0.15);
         }
 
-        /* ヘッダーの初期状態とスクロール時の背景 */
-        #header {
-            background-color: transparent;
-            transition: all 0.5s ease;
+        .contact-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s ease;
         }
-        #header.scrolled {
-            background-color: rgba(8, 9, 13, 0.95); /* 深い紺色の背景 */
-            backdrop-filter: blur(10px); /* すりガラス効果 */
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.1); /* 薄い金の境界線 */
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
+        .contact-card:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.05); }
+
+        .line-accent { height: 1px; background: linear-gradient(90deg, #d4af37 0%, transparent 100%); width: 100px; }
     </style>
 </head>
 <body class="antialiased overflow-x-hidden">
 
-    <div class="fixed inset-0 noise-overlay z-[100]"></div>
-
-    <header class="fixed top-0 w-full z-50 py-6 px-6 md:px-12" id="header">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2.5 md:gap-3">
-                <img src="icon.png" alt="Logo" class="w-6 h-6 md:w-7 md:h-7 object-contain">
-                <span class="text-sm md:text-base font-black tracking-widest uppercase text-white">こよいぷろだくしょん</span>
+    <header class="fixed top-0 w-full z-50 py-8 px-6 md:px-12" id="header">
+        <div class="max-w-7xl mx-auto flex justify-between items-end">
+            <a href="#" class="flex flex-col gap-1">
+                <span class="text-xs md:text-sm font-logo text-white">今宵プロダクション</span>
+                <div class="flex items-center gap-2 opacity-40">
+                    <div class="w-4 h-[1px] bg-white"></div>
+                    <span class="text-[8px] font-corporate tracking-[0.3em]">Operated by GLOWENGINE LLC.</span>
+                </div>
             </a>
-            <nav class="flex items-center gap-6 md:gap-10">
-                <a href="#talents" class="hidden md:block text-[9px] font-bold tracking-[0.3em] uppercase opacity-40 hover:opacity-100 transition-opacity">Talents</a>
-                <a href="https://glowengine-llc.com/" target="_blank" class="text-[9px] font-black tracking-[0.2em] uppercase px-4 py-1.5 border border-koyoi-gold/30 rounded-full hover:bg-koyoi-gold hover:text-koyoi-night transition-all">GlowEngine</a>
+            <nav class="flex items-center gap-8">
+                <a href="#talents" class="hidden md:block text-[9px] font-black tracking-[0.4em] uppercase opacity-40 hover:opacity-100 transition-opacity">Talents</a>
+                <a href="https://glowengine-llc.com/" target="_blank" class="text-[9px] font-black tracking-[0.2em] uppercase px-5 py-2 border border-koyoi-gold/40 rounded-sm hover:bg-koyoi-gold hover:text-koyoi-night transition-all">Corporate Site</a>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="min-h-screen flex flex-col justify-center items-center px-6 relative">
-            <div class="absolute w-[500px] h-[500px] bg-koyoi-gold/5 rounded-full filter blur-[100px] animate-soft-float"></div>
-            
-            <div class="text-center relative z-10">
-                <p data-aos="fade-down" class="text-[9px] font-black tracking-[0.8em] text-koyoi-gold mb-8 uppercase opacity-80">
-                    Premium ASMR Agency
-                </p>
-                
-                <h1 data-aos="fade-up" data-aos-delay="200" class="text-4xl md:text-[80px] font-black leading-tight mb-10 tracking-tighter text-gradient uppercase">
-                    Beyond the Silence.
+        <section class="min-h-screen flex flex-col justify-center px-6 md:px-24">
+            <div data-aos="fade-up">
+                <p class="text-[10px] font-black tracking-[1em] text-koyoi-gold mb-6 uppercase">Premium ASMR Agency</p>
+                <h1 class="text-5xl md:text-[100px] font-black leading-none mb-8 tracking-tighter text-gradient uppercase italic">
+                    Beyond the<br>Silence.
                 </h1>
-
-                <p data-aos="fade-up" data-aos-delay="400" class="text-xs md:text-sm max-w-xl mx-auto leading-[2.4] opacity-50 font-medium mb-14 px-4">
-                    静寂の先にある、特別な音色を。<br>
-                    耳元で囁かれる物語が、あなたの日常を溶かしていく。<br>
-                    唯一無二のASMR体験を、ここから。
-                </p>
-
-                <div data-aos="fade-up" data-aos-delay="600">
-                    <a href="#talents" class="btn-koyoi px-14 py-4 rounded-full text-[10px] font-black tracking-[0.4em] uppercase">
-                        View Talents
-                    </a>
+                <div class="flex flex-col gap-4 max-w-lg">
+                    <div class="line-accent"></div>
+                    <p class="text-[11px] md:text-xs leading-[2.5] opacity-50 font-medium">
+                        NEXT GENERATION ASMR PRODUCTION.<br>
+                        OPERATED BY <a href="#" class="underline underline-offset-4 hover:text-koyoi-gold transition-colors">GLOWENGINE LLC.</a>
+                    </p>
                 </div>
             </div>
         </section>
 
-        <section id="talents" class="py-48 px-6 md:px-12 bg-white/[0.01]">
+        <section id="talents" class="py-40 px-6 md:px-12">
             <div class="max-w-7xl mx-auto">
-                <div class="mb-20 text-center md:text-left">
-                    <h2 data-aos="fade-right" class="text-2xl font-black tracking-tighter uppercase mb-2">Talents</h2>
-                    <div class="w-8 h-1 bg-koyoi-gold mx-auto md:mx-0"></div>
+                <div class="mb-20">
+                    <h2 data-aos="fade-right" class="text-xs font-logo tracking-[0.6em] text-koyoi-gold uppercase mb-4">Talents</h2>
+                    <div class="w-16 h-[1px] bg-koyoi-gold opacity-50"></div>
                 </div>
-
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-                    <div data-aos="fade-up" class="talent-card-secret aspect-[3/4] rounded-2xl"></div>
-                    <div data-aos="fade-up" data-aos-delay="100" class="talent-card-secret aspect-[3/4] rounded-2xl opacity-60"></div>
-                    <div data-aos="fade-up" data-aos-delay="200" class="talent-card-secret aspect-[3/4] rounded-2xl opacity-40"></div>
-                    <div data-aos="fade-up" data-aos-delay="300" class="talent-card-secret aspect-[3/4] rounded-2xl opacity-20"></div>
+                    <div data-aos="fade-up" class="talent-card-secret aspect-[3/4] rounded-sm"></div>
+                    <div data-aos="fade-up" data-aos-delay="100" class="talent-card-secret aspect-[3/4] rounded-sm opacity-60"></div>
+                    <div data-aos="fade-up" data-aos-delay="200" class="talent-card-secret aspect-[3/4] rounded-sm opacity-40"></div>
+                    <div data-aos="fade-up" data-aos-delay="300" class="talent-card-secret aspect-[3/4] rounded-sm opacity-20"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="connect" class="py-40 px-6 border-t border-white/5 bg-white/[0.01]">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <a href="https://x.com/" target="_blank" data-aos="fade-right" class="contact-card p-12 flex flex-col items-start group">
+                        <span class="text-[10px] font-black tracking-[0.5em] text-koyoi-gold uppercase mb-12">Official X</span>
+                        <div class="text-4xl md:text-6xl font-black tracking-tighter mb-4 group-hover:text-koyoi-gold transition-colors">@koyoi_prod</div>
+                        <div class="flex items-center gap-3 opacity-30 group-hover:opacity-100 transition-opacity">
+                            <span class="text-[9px] tracking-[0.4em]">VISIT PROFILE</span>
+                            <div class="w-8 h-[1px] bg-white group-hover:bg-koyoi-gold"></div>
+                        </div>
+                    </a>
+
+                    <a href="mailto:info@glowengine-llc.com" data-aos="fade-left" class="contact-card p-12 flex flex-col items-start group">
+                        <span class="text-[10px] font-black tracking-[0.5em] text-koyoi-gold uppercase mb-12">Inquiries</span>
+                        <div class="text-xl md:text-2xl font-light tracking-widest mb-6 italic">info@glowengine-llc.com</div>
+                        <div class="text-[9px] opacity-30 tracking-[0.4em]">CONTACT FOR BUSINESS</div>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-20 px-6 border-t border-white/5 text-center">
-        <div class="mb-10 flex justify-center gap-10 text-[9px] font-black tracking-[0.3em] opacity-30 uppercase">
-            <a href="https://x.com/" target="_blank" class="hover:text-koyoi-gold transition-colors">X (Twitter)</a>
-            <a href="https://glowengine-llc.com/" target="_blank" class="hover:text-koyoi-gold transition-colors">Corporate</a>
-            <a href="mailto:info@glowengine-llc.com" class="hover:text-koyoi-gold transition-colors">Contact</a>
+    <footer class="py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex flex-col items-center md:items-start gap-2">
+                <span class="text-[9px] font-black tracking-[0.3em] opacity-40 uppercase">今宵プロダクション</span>
+                <p class="text-[8px] font-medium tracking-[0.5em] opacity-20 uppercase">
+                    &copy; 2026 GLOWENGINE LLC. ALL RIGHTS RESERVED.
+                </p>
+            </div>
+            <div class="flex gap-8 opacity-40 text-[9px] font-bold tracking-[0.2em]">
+                <a href="#" class="hover:text-koyoi-gold transition-colors italic uppercase">X (Twitter)</a>
+                <a href="https://glowengine-llc.com/" target="_blank" class="hover:text-koyoi-gold transition-colors italic uppercase">Corporate</a>
+            </div>
         </div>
-        <p class="text-[8px] font-bold tracking-[0.5em] opacity-10 uppercase">&copy; 2026 KOYOI PRODUCTION / GLOWENGINE</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true, duration: 1200, easing: 'ease-out-expo' });
-
-        // スクロール時にヘッダーに背景をつける処理
-        const header = document.getElementById('header');
+        AOS.init({ once: true, duration: 1000 });
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+            const header = document.getElementById('header');
+            header.style.backgroundColor = window.scrollY > 50 ? "rgba(8, 9, 13, 0.95)" : "transparent";
+            header.style.backdropFilter = window.scrollY > 50 ? "blur(20px)" : "none";
         });
     </script>
 </body>
